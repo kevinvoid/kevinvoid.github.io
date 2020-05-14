@@ -8,7 +8,7 @@ categories: 数据结构
 
 ### 一、Jekyll简介
 + Transform your plain text into static websites and blogs.
-+ 官网: https://jekyllrb.com/
++ 官网: [https://jekyllrb.com/](https://jekyllrb.com/)
 
 ### 二、Jekyll安装及启动步骤
 - 说明: 安装Jekyll之前本地环境要安装ruby,而且还有版本限制.mac自带了ruby,通过命令:ruby -v查看ruby版本  
@@ -37,7 +37,7 @@ categories: 数据结构
 	    Server address: http://127.0.0.1:4000/
 	  Server running... press ctrl-c to stop.
 	```
-		+ 4> 访问: http://localhost:4000 访问
+		+ 4> 访问: [https://jekyllrb.com/](http://localhost:4000) 访问
 
 ### 三、说明
 + jekyll serve启动的过程出现“You have already activated public_suffix 4.0.5, but your Gemfile requires public_suffix 4.0.3. Prepending `bundle exec` to your command may solve this. (Gem::LoadError)“错误提示,可通过gem命令安装或卸载.  
