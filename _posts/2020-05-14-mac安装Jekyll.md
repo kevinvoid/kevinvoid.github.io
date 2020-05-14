@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "mac安装Jekyll"
-date:   2020-03-25 016:08:02 +0800
+date:   2020-05-14 11:08:02 +0800
 categories: 数据结构
 ---
 
