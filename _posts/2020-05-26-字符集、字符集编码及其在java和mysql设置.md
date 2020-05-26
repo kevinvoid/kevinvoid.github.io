@@ -153,5 +153,4 @@ ALTER DATABASE mysql_study CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 [字符、字符集、字符编码解惑](https://dailc.github.io/2017/05/03/char_charset_charEncoding.html)  
 [Unicode 及编码方式概述](https://www.ibm.com/developerworks/cn/java/unicode-programming-language/index.html)  
 [深入分析 Java 中的中文编码问题](https://www.ibm.com/developerworks/cn/java/j-lo-chinesecoding/index.html)
-[深入分析 Java 中的中文编码问题](https://www.ibm.com/developerworks/cn/java/j-lo-chinesecoding/)
 
