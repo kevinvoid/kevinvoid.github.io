@@ -52,13 +52,17 @@ file 2020-05-17-java程序启动虚拟机参数.md
 	4. JDK 中 JVM 默认的字符集。
 
 - JSP：  
+&nbsp;&nbsp;&nbsp;&nbsp;
 通过JSP页面命令<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>设置 JSP 	页面的编码方式（pageEncoding）以及提交表单时所使用的编码方式（charset 属性）；
 
 - HTML:   
+&nbsp;&nbsp;&nbsp;&nbsp;
 设置 Content-Type 属性<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">；
 - Servlet：  
+&nbsp;&nbsp;&nbsp;&nbsp;
 设置 response.setContentType("text/html;charset=UTF-8")，即服务器端编码方式；
 - POST请求：  
+&nbsp;&nbsp;&nbsp;&nbsp;
 通过request.setCharacterEncoding ("UTF-8")设置解码方式、response.setCharacterEncoding("UTF-8")设置服务器端响应数据的编码方式
 ```
 protected void service(HttpServletRequest request, HttpServletResponse
@@ -69,12 +73,15 @@ response.setCharacterEncoding("UTF-8");
 }
 ```
 - Get请求：  
+&nbsp;&nbsp;&nbsp;&nbsp;
 Get 请求方式中请求参数会被附加到地址栏的 URL 之后，URL 组成：域名:端口/contextPath/servletPath/pathInfo?queryString，不同的服务器对 URL 中 pathInfo 和 queryString 解码方式设定不一样，比如 Tomcat 服务器一般在 server.xml 中设定的，Tomcat8 之前的版本默认使用的是 ISO-8859-1，但是 Tomcat 8 默认使用的是 UTF-8，如清单 4 所示；另外对于双字节字符如中日韩等作为 URL 的参数时，最好先 URI 编码后在放到 URL 中 URLEncoder.encode(String.valueOf(c),"UTF-8")；
 
 - XML文档：  
+&nbsp;&nbsp;&nbsp;&nbsp;
 设置 transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
 
-- 调用 API 时指定字符集：  
+- 调用 API 时指定字符集：   
+&nbsp;&nbsp;&nbsp;&nbsp; 
 调用字符串操作相关或者其他 I/O 操作 API 时，最好指定字符集，如 String.getBytes("UTF-8")，而不是 String.getBytes()；根据情况必要的时候需要写入BOM头，例如 Microsoft Office 在读取 csv 文件的时候，它将首先读取 BOM，然后使用 BOM 中的编码打开文件，这种情况下我们在创建或者导出到 CSV 文件的时候，我们需要在代码里面写入BOM头
 ```
 private static void createCsvFile() {
@@ -116,7 +123,34 @@ jinfo -sysprops 55827
 		123abc??
 		```
 	- 字符编码方式转换
-	- 文件编码不同的转换
+		- 设置-Dfile.encoding=UTF-8
+		- 代码:utf-8编码解码的字符串转换成gbk编码解码的字符串
+		```
+		String utf8Data = "java爪哇";
+		// String.getBytes(编码字符集)
+		// new String(bytes[], 解码字符集)
+		// 编码与解码字符集必须一致，不然乱码
+		String gbkData = new String(utf8Data.getBytes("GBK"), "GBK");
+		System.out.println(gbkData);
+		// gbk编码的字符串
+		// 使用utf8编码，gbk解码，gbkStr已经乱码
+		String gbkStr = new String(utf8Data.getBytes(), "GBK");
+		System.out.println(gbkStr);
+		// 用utf-8编码，utf-8解码，乱码，因为gbkString是GBK编码的字符串
+		String utf8Str = new String(gbkStr.getBytes("UTF-8"), "UTF-8");
+		System.out.println(utf8Str);
+		// 使用gbk编码，在使用utf-8解码，数据显示正常
+		// gbkStr使用的utf-8编码，gbk解码。恢复正常显示需使用gbk编码，utf-8解码一次
+		String utf8Str2 = new String(gbkStr.getBytes("GBK"), "UTF-8");
+		System.out.println(utf8Str2);
+		```
+		- output:
+		```
+		java爪哇
+		java鐖搰
+		java鐖搰
+		java爪哇
+		```
 
 ### mysql相关
 - 查看mysql支持的字符集及字符集序: SHOW CHARACTER SET;
