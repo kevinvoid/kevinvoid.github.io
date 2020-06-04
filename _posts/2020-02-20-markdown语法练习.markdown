@@ -4,6 +4,20 @@ title:  "markdown语法练习"
 date:   2020-02-20 09:52:02 +0800
 categories: markdown
 ---
+
+### 前言:
+	markdwon内联HTML标签
+
+一、内联html标签
+<table>
+    <tr>
+        <td>Foo</td>
+    </tr>
+</table>
+
+
+1111<br/>2222
+
 you are
 # 这是一级标题
 ## 这是二级标题
@@ -100,7 +114,40 @@ title可加可不加
 代码块：代码之间分别用三个反引号包起来，且两边的反引号单独占一行  
     `代码内容`  
 
-三个反引号内的代码行换行不会被识别,可直接使用 <pre> </pre> 来插入代码块，里面的换行不会被转义,使用了<pre>标签之后,代码行中不能出现<,>符号
+三个反引号内的代码行换行不会被识别,可直接使用pre、code标签来插入代码块，里面的换行不会被转义,使用了内嵌html标签之后,代码行中不能出现& < >符号,可用转义字符替代
+
+<pre>
+	<code>
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+/**
+ * @author yangpingn
+ * @description: TODO
+ * @date 2020-06-02 14:50
+ */
+
+@Controller
+@RequestMapping("/api/monitor")
+public class MonitorController {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MonitorController.class);
+
+    @GetMapping("/alive")
+    @ResponseBody
+    public String alive() {
+        // return Result.builder().result("success" + Math.random()).success().build();
+        return "success" + Math.random();
+    }
+
+
+}
+	</code>
+</pre>
 
 ```
   代码...
@@ -113,8 +160,21 @@ title可加可不加
 
 注：为了防止转译，前后三个反引号处加了小括号，实际是没有的。这里只是用来演示，实际中去掉两边小括号即可。
 
+十一、水平线
+你可以在一行里输入三个以上的连字符，星号或下划线来插入一个水平线标签（<hr />）
+<hr />
+
+德玛西亚
+
+*****
+
 ### 说明
 段落中使用~会导致markdown出现水红色的分界线,可用其他符号代替
+
+
+### 参考文献
+[Markdown的正确使用方式](https://unnamed42.github.io/2015-12-02-Markdown%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.html)  
+[Markdown语法](https://www.iminho.me/wiki/docs/mindoc/markdown-grammar.md)  
 
 
 
